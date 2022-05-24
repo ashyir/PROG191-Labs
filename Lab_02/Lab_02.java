@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Lab_02 {
     public static void main(String[] args) {
-        question_03_02();
+        question_05();
     }
 
     // Question 01.
@@ -141,5 +141,63 @@ public class Lab_02 {
         }
 
         in.close();
+    }
+
+    // Question 04.
+    // Write a program that determines if a list is already sorted
+    // in increasing order. The program should prompt the user to enter a list
+    // and displays whether the list is sorted in ascending order or not.
+    // Note that the first number in the input indicates
+    // the number of the elements in the list.
+    // The program exits when the first number is 0.
+    public static void question_04() {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Enter a list of number: ");
+        int arrLength = in.nextInt();
+        int[] arrNumber = new int[arrLength];
+        boolean isSorted = true;
+
+        for (int i = 0; i < arrLength; ++i) {
+            arrNumber[i] = in.nextInt();
+        }
+
+        for (int i = 0; i < arrLength - 1; ++i) {
+            if (arrNumber[i] > arrNumber[i + 1]) {
+                isSorted = false;
+                break;
+            }
+        }
+
+        if (isSorted) {
+            System.out.println("Sorted.");
+        } else {
+            System.out.println("Not sorted.");
+        }
+
+        in.close();
+    }
+
+    // Question 05.
+    // Write a program that generates 100 random integers between 0 and 9
+    // then displays the count for each number.
+    // Hint: use the method Math.random().
+    public static void question_05() {
+        int min = 0;
+        int max = 9;
+        int[] numberArray = new int[100];
+        int[] count = new int[10];
+
+        System.out.println("Random numbers:");
+        for (int i = 0; i < numberArray.length; ++i) {
+            numberArray[i] = (int) (Math.random() * (max - min + 1)) + min;
+            System.out.print(numberArray[i] + " ");
+            count[numberArray[i]]++;
+        }
+
+        System.out.print("\n\nStatistics:");
+        for (int i = 0; i < count.length; ++i) {
+            System.out.printf("\n%d: %d.", i, count[i]);
+        }
     }
 }

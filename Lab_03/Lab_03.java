@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Lab_03 {
     public static void main(String[] args) {
-        question_03();
+        question_05();
     }
 
     // Question 01.
@@ -81,5 +81,96 @@ public class Lab_03 {
         } else {
             System.out.print("\nThe equation has no roots.");
         }
+    }
+
+    // Question 05.
+    public static void question_05() {
+        ContactList contactList = new ContactList();
+
+        contactList.addContact("Mr. A", "0000000000");
+        contactList.addContact("Mr. B", "1111111111");
+        contactList.addContact("Mr. C", "2222222222");
+
+        while (true) {
+            int option = showMenuQuestion05();
+
+            switch (option) {
+                case 0:
+                    return;
+
+                case 1:
+                    contactList.showAllByName();
+                    break;
+
+                case 2:
+                    viewContactDetails(contactList);
+                    break;
+
+                case 3:
+                    updateContactPhone(contactList);
+                    break;
+
+                case 4:
+                    deleteContact(contactList);
+                    break;
+
+                default:
+                    System.out.println("\nWrong option. Enter again !!!");
+            }
+        }
+    }
+
+    public static int showMenuQuestion05() {
+        Scanner in = new Scanner(System.in);
+
+        System.out.println("\n\n-------------------------");
+        System.out.println("1. Show All Contacts.");
+        System.out.println("2. Find Contact.");
+        System.out.println("3. Update Phone.");
+        System.out.println("4. Delete Contact.");
+        System.out.println("0. Exit.");
+
+        System.out.print("Please enter an option: ");
+        int option = in.nextInt();
+
+        in.close();
+
+        return option;
+    }
+
+    public static void viewContactDetails(ContactList contactList) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("\nPlease enter a name: ");
+        String name = in.nextLine();
+
+        contactList.viewDetails(name);
+
+        in.close();
+    }
+
+    public static void updateContactPhone(ContactList contactList) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("\nPlease enter a name: ");
+        String name = in.nextLine();
+
+        System.out.print("\nPlease enter a new phone: ");
+        String phone = in.nextLine();
+
+        contactList.updateContact(name, phone);
+
+        in.close();
+    }
+
+    public static void deleteContact(ContactList contactList) {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("\nPlease enter a name: ");
+        String name = in.nextLine();
+
+        contactList.deleteContact(name);
+
+        in.close();
     }
 }

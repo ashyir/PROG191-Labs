@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Lab_03 {
     public static void main(String[] args) {
-
+        question_03();
     }
 
     // Question 01.
@@ -65,5 +65,21 @@ public class Lab_03 {
         long duration = endTime - startTime;
 
         System.out.print("Duration: " + duration);
+    }
+
+    // Question 03.
+    public static void question_03() {
+        QuadraticEquation qe = new QuadraticEquation(2, 4, 2);
+
+        int result = qe.getDiscriminant();
+
+        if (result > 0) {
+            System.out.print("\nRoot 01: " + qe.getRoot1());
+            System.out.print("\nRoot 02: " + qe.getRoot2());
+        } else if (result == 0) {
+            System.out.print("\nRoot 01: " + qe.getRoot1());
+        } else {
+            System.out.print("\nThe equation has no roots.");
+        }
     }
 }

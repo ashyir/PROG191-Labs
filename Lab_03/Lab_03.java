@@ -2,7 +2,7 @@ import java.util.*;
 
 public class Lab_03 {
     public static void main(String[] args) {
-        question_01();
+
     }
 
     // Question 01.
@@ -45,5 +45,25 @@ public class Lab_03 {
 
         System.out.print("\nCurrent day after change: ");
         System.out.print(calendar.get(GregorianCalendar.DAY_OF_MONTH));
+    }
+
+    // Question 02.
+    // This function is not to answer Question 02.
+    // This function shows you how to calculate running time of codes.
+    public static void question_02() {
+        long startTime = System.currentTimeMillis();
+
+        System.out.println("Start loop.");
+
+        for (int i = 0; i < 1000000; ++i) {
+            System.out.println(i);
+        }
+
+        System.out.println("End loop.");
+
+        long endTime = System.currentTimeMillis();
+        long duration = endTime - startTime;
+
+        System.out.print("Duration: " + duration);
     }
 }

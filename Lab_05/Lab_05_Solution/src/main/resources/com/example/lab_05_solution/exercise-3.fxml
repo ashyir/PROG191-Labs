@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Line?>
+
+<Pane prefHeight="500.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab_05_solution.E3Controller">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+   <Label fx:id="label" layoutX="233.0" layoutY="87.0" text="300" textFill="#27251f">
+      <padding>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </padding></Label>
+    <Circle fx:id="circle_1" fill="#00704a" layoutX="100.0" layoutY="100.0" onMouseDragged="#moveCircle1" onMousePressed="#setMouseStartingPoint" radius="25.0" stroke="#27251f" strokeType="INSIDE" />
+   <Circle fx:id="circle_2" fill="#00704a" layoutX="400.0" layoutY="100.0" onMouseDragged="#moveCircle2" onMousePressed="#setMouseStartingPoint" radius="25.0" stroke="#27251f" strokeType="INSIDE" />
+   <Line fx:id="line" endX="272.0" endY="-106.0" layoutX="128.0" layoutY="206.0" startX="-28.0" startY="-106.0" stroke="#27251f" />
+</Pane>

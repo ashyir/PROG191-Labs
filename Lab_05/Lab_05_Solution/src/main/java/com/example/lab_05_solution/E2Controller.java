@@ -2,6 +2,8 @@ package com.example.lab_05_solution;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -36,6 +38,16 @@ public class E2Controller {
         moveCircleVertically(2);
     }
 
+    @FXML
+    protected void keyPress(KeyEvent ke) {
+        switch (ke.getCode()) {
+            case W: moveCircleVertically(-2); break;
+            case S: moveCircleVertically(2); break;
+            case A: moveCircleHorizontally(-2); break;
+            case D: moveCircleHorizontally(2); break;
+        }
+    }
+
     private void moveCircleHorizontally(int moveStep) {
         double circleNewPosition = (circle.getLayoutX() + moveStep);
 
@@ -49,7 +61,7 @@ public class E2Controller {
 
         if (leftEdgeOfCircle < leftEdgeOfPane) {
             double extra = leftEdgeOfPane - leftEdgeOfCircle;
-            double xOfNewCircle = rightEdgeOfPane - extra + circle.getRadius();
+            double xOfNewCircle = (rightEdgeOfPane - extra) + circle.getRadius();
 
             newCircle.setLayoutX(xOfNewCircle);
 

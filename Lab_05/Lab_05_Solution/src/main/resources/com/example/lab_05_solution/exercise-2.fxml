@@ -6,26 +6,35 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 
-<Pane prefHeight="230.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab_05_solution.E2Controller">
+<Pane onKeyPressed="#keyPress" prefHeight="230.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/17"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab_05_solution.E2Controller">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-   <Pane fx:id="pane" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: orange;">
-      <children>
-          <Circle fx:id="circle" fill="#00704a" layoutX="75.0" layoutY="75.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-         <Circle fx:id="newCircle" fill="#00704a" layoutX="75.0" layoutY="75.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
-      </children>
-   </Pane>
-   <HBox alignment="CENTER" layoutY="190.0" prefHeight="40.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #00704A;">
-      <children>
-         <Button fx:id="btnUp" mnemonicParsing="false" onMouseClicked="#btnUpClick" prefWidth="50.0" style="-fx-background-color: orange;" text="Up" />
-         <Button fx:id="btnDown" onMouseClicked="#btnDownClick" prefWidth="50.0" style="-fx-background-color: orange;" text="Down" />
-      </children>
-   </HBox>
-    <HBox alignment="CENTER" layoutY="150.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="150.0" spacing="10.0" style="-fx-background-color: #00704A;">
+    <Pane fx:id="pane" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: orange;">
         <children>
-            <Button fx:id="btnLeft" mnemonicParsing="false" onMouseClicked="#btnLeftClick" prefWidth="50.0" style="-fx-background-color: orange;" text="Left" />
-            <Button fx:id="btnRight" onMouseClicked="#btnRightClick" prefWidth="50.0" style="-fx-background-color: orange;" text="Right" />
+            <Circle fx:id="circle" fill="#00704a" layoutX="75.0" layoutY="75.0" radius="25.0" stroke="BLACK"
+                    strokeType="INSIDE" strokeWidth="0.0"/>
+            <Circle fx:id="newCircle" fill="#00704a" layoutX="75.0" layoutY="75.0" radius="25.0" stroke="BLACK"
+                    strokeType="INSIDE" strokeWidth="0.0"/>
+        </children>
+    </Pane>
+    <HBox alignment="CENTER" layoutY="190.0" prefHeight="40.0" prefWidth="150.0" spacing="10.0"
+          style="-fx-background-color: #00704A;">
+        <children>
+            <Button fx:id="btnUp" mnemonicParsing="false" onMouseClicked="#btnUpClick" prefWidth="50.0"
+                    style="-fx-background-color: orange;" text="Up"/>
+            <Button fx:id="btnDown" onMouseClicked="#btnDownClick" prefWidth="50.0"
+                    style="-fx-background-color: orange;" text="Down"/>
+        </children>
+    </HBox>
+    <HBox alignment="CENTER" layoutY="150.0" maxWidth="1.7976931348623157E308" prefHeight="40.0" prefWidth="150.0"
+          spacing="10.0" style="-fx-background-color: #00704A;">
+        <children>
+            <Button fx:id="btnLeft" mnemonicParsing="false" onMouseClicked="#btnLeftClick" prefWidth="50.0"
+                    style="-fx-background-color: orange;" text="Left"/>
+            <Button fx:id="btnRight" onMouseClicked="#btnRightClick" prefWidth="50.0"
+                    style="-fx-background-color: orange;" text="Right"/>
         </children>
     </HBox>
 </Pane>

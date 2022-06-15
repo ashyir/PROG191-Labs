@@ -1,0 +1,4 @@
+Lecturer Management:
+- Manage Course.
+- Manage Class.
+- Manage Lecturer.

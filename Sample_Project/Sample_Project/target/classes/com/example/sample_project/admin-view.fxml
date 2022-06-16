@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.sample_project.AdminController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+    <children>
+        <TabPane prefHeight="500.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Program">
+                    <content>
+                        <fx:include source="program-view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Course">
+                    <content>
+                        <fx:include source="course-view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Lecturer">
+                    <content>
+                        <fx:include source="lecturer-view.fxml"/>
+                    </content>
+                </Tab>
+                <Tab text="Session">
+                    <content>
+                        <fx:include source="session-view.fxml"/>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</Pane>

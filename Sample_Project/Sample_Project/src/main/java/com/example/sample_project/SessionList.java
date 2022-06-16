@@ -37,15 +37,8 @@ public class SessionList {
     public static int edit(int id, Session newSession) {
         for (var session : _sessions) {
             if (session.getId() == id) {
-                session.update(
-                        newSession.getCode(),
-                        newSession.getStartDate(),
-                        newSession.getEndDate(),
-                        newSession.getSemester(),
-                        newSession.getYear(),
-                        newSession.getLecturerId(),
-                        newSession.getCourseId()
-                );
+                var index = _sessions.indexOf(session);
+                _sessions.set(index, newSession);
 
                 return 1;
             }

@@ -33,16 +33,35 @@
                             <children>
                                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="25.0">
                                     <children>
-                                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="50.0" text="Name" textAlignment="CENTER" />
-                                        <TextField fx:id="txtName" prefHeight="25.0" prefWidth="250.0" />
+                                        <Label prefHeight="25.0" prefWidth="50.0" text="Staff ID" textAlignment="CENTER" />
+                                        <TextField fx:id="txtStaffId" prefHeight="25.0" prefWidth="250.0" />
                                     </children>
                                 </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="25.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="50.0" text="Name" textAlignment="CENTER" />
+                              <TextField fx:id="txtName" prefHeight="25.0" prefWidth="250.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="25.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="50.0" text="Phone" textAlignment="CENTER" />
+                              <TextField fx:id="txtPhone" prefHeight="25.0" prefWidth="250.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="25.0">
+                           <children>
+                              <Label prefHeight="25.0" prefWidth="50.0" text="Email" textAlignment="CENTER" />
+                              <TextField fx:id="txtEmail" prefHeight="25.0" prefWidth="250.0" />
+                           </children>
+                        </HBox>
                                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="500.0" spacing="25.0">
                                     <children>
                                         <Button fx:id="btnAdd" mnemonicParsing="false" onMouseClicked="#add" prefHeight="25.0" prefWidth="100.0" text="Add" />
-                                        <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="100.0" text="Edit" />
+                                        <Button fx:id="btnEdit" disable="true" mnemonicParsing="false" onMouseClicked="#edit" prefHeight="25.0" prefWidth="100.0" text="Edit" />
                                     </children>
                                 </HBox>
+                        <Label fx:id="lblId" textFill="TRANSPARENT" />
                             </children>
                         </VBox>
                     </children>

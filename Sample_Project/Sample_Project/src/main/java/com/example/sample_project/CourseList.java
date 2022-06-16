@@ -37,14 +37,8 @@ public class CourseList {
     public static int edit(int id, Course newCourse) {
         for (var course : _courses) {
             if (course.getId() == id) {
-                course.update(
-                        newCourse.getCode(),
-                        newCourse.getName(),
-                        newCourse.getHour(),
-                        newCourse.getCredit(),
-                        newCourse.getProgramId()
-                );
-
+                var index = _courses.indexOf(course);
+                _courses.set(index, newCourse);
                 return 1;
             }
         }

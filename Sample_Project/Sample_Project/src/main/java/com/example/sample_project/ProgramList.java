@@ -37,7 +37,8 @@ public class ProgramList {
     public static int edit(int id, Program newProgram) {
         for (var program : _programs) {
             if (program.getId() == id) {
-                program.update(newProgram.getName());
+                var index = _programs.indexOf(program);
+                _programs.set(index, newProgram);
 
                 return 1;
             }

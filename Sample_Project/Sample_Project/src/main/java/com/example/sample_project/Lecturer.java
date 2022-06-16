@@ -1,5 +1,7 @@
 package com.example.sample_project;
 
+import javafx.beans.property.StringProperty;
+
 public class Lecturer {
     private int _id;
     private String _name;

@@ -37,12 +37,8 @@ public class LecturerList {
     public static int edit(int id, Lecturer newLecturer) {
         for (var lecturer : _lecturers) {
             if (lecturer.getId() == id) {
-                lecturer.update(
-                        newLecturer.getName(),
-                        newLecturer.getStaffId(),
-                        newLecturer.getPhone(),
-                        newLecturer.getEmail()
-                );
+                var index = _lecturers.indexOf(lecturer);
+                _lecturers.set(index, newLecturer);
 
                 return 1;
             }

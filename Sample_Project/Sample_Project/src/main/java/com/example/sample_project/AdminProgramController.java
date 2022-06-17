@@ -6,12 +6,14 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class ProgramController implements Initializable {
+public class AdminProgramController implements Initializable {
     @FXML
     private Label lblId;
 
@@ -19,10 +21,10 @@ public class ProgramController implements Initializable {
     private TableView listTable;
 
     @FXML
-    private TextField txtName;
+    private TextField addName;
 
     @FXML
-    private TextField txtSearch;
+    private TextField searchName;
 
     @FXML
     private Button btnAdd;
@@ -36,19 +38,29 @@ public class ProgramController implements Initializable {
     }
 
     private void clearTextView() {
-        txtName.setText("");
+        addName.setText("");
+    }
+
+    @FXML
+    protected void addEnter(KeyEvent ke) {
+        if (ke.getCode() == KeyCode.ENTER)
+            add();
     }
 
     @FXML
     protected void add() {
         if (btnAdd.getText().equals("Add")) {
-            var program = new Program(0, txtName.getText());
+            var program = new Program(0, addName.getText());
             ProgramList.add(program);
             clearTextView();
 
             return;
         }
 
+        resetForm();
+    }
+
+    private void resetForm() {
         clearTextView();
 
         btnAdd.setText("Add");
@@ -58,38 +70,35 @@ public class ProgramController implements Initializable {
     @FXML
     protected void edit() {
         var id = Integer.parseInt(lblId.getText());
-        var program = new Program(id,
-                txtName.getText());
+        var program = new Program(id, addName.getText());
 
-        ProgramList.edit(id, program);
+        ProgramList.edit(program);
 
-        clearTextView();
-
-        btnAdd.setText("Add");
-        btnEdit.setDisable(true);
+        resetForm();
     }
 
     private void viewDetail(Program program) {
-        txtName.setText(program.getName());
+        addName.setText(program.getName());
 
         btnAdd.setText("Cancel");
         btnEdit.setDisable(false);
 
-        // For editting.
+        // For editing.
         lblId.setText(String.valueOf(program.getId()));
     }
 
     private void remove(Program program) {
-        ProgramList.remove(program);
+        ProgramList.remove(program.getId());
+        clearTextView();
     }
 
     @FXML
     protected void viewAll() {
-        TableColumn<Program, Program> colAction = new TableColumn<>("Action");
-        colAction.setMinWidth(50);
-        colAction.setStyle("-fx-alignment: CENTER;");
-        colAction.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
-        colAction.setCellFactory(param -> new TableCell<Program, Program>() {
+        TableColumn<Program, Program> col_1 = new TableColumn<>("Action");
+        col_1.setMinWidth(50);
+        col_1.setStyle("-fx-alignment: CENTER;");
+        col_1.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
+        col_1.setCellFactory(param -> new TableCell<Program, Program>() {
             private final HBox hBox = new HBox();
             private final Button btnRemove = new Button("x");
             private final Button btnViewDetail = new Button("View");
@@ -117,17 +126,17 @@ public class ProgramController implements Initializable {
             }
         });
 
-        TableColumn<Program, String> colId = new TableColumn<>("ID");
-        colId.setMinWidth(50);
-        colId.setStyle("-fx-alignment: CENTER;");
-        colId.setCellValueFactory(new PropertyValueFactory<>("Id"));
+        TableColumn<Program, String> col_2 = new TableColumn<>("ID");
+        col_2.setMinWidth(50);
+        col_2.setStyle("-fx-alignment: CENTER;");
+        col_2.setCellValueFactory(new PropertyValueFactory<>("Id"));
 
-        TableColumn<Program, String> colName = new TableColumn<>("Name");
-        colName.setMinWidth(150);
-        colName.setStyle("-fx-alignment: CENTER;");
-        colName.setCellValueFactory(new PropertyValueFactory<>("Name"));
+        TableColumn<Program, String> col_3 = new TableColumn<>("Name");
+        col_3.setMinWidth(150);
+        col_3.setStyle("-fx-alignment: CENTER;");
+        col_3.setCellValueFactory(new PropertyValueFactory<>("Name"));
 
         listTable.setItems(ProgramList.getList());
-        listTable.getColumns().addAll(colAction, colId, colName);
+        listTable.getColumns().addAll(col_1, col_2, col_3);
     }
 }

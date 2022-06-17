@@ -5,9 +5,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 public class LoginController {
     @FXML
@@ -23,23 +27,47 @@ public class LoginController {
     private PasswordField txtPassword;
 
     @FXML
-    protected void login() throws IOException {
+    protected void loginEnter(KeyEvent ke) throws IOException, NoSuchAlgorithmException {
+        if (ke.getCode() == KeyCode.ENTER)
+            login();
+    }
+
+    @FXML
+    protected void login() throws IOException, NoSuchAlgorithmException {
         var username = txtUsername.getText();
         var password = txtPassword.getText();
 
-        if (username.equals("admin") && password.equals("admin")) {
-            mainPane.getChildren().clear();
-            Pane newLoadedPane =  FXMLLoader.load(SampleProjectApplication.class.getResource("admin-view.fxml"));
-            mainPane.getChildren().add(newLoadedPane);
-
+        if (username.isBlank()) {
+            showError("Username is blank.");
             return;
         }
 
-        lblError.setText("Login Failed.");
+        if (password.isBlank()) {
+            showError("Password is blank.");
+            return;
+        }
 
-        txtUsername.setText("");
+        if (!UserList.authenticate(username, password)) {
+            showError("Login Failed.");
+            return;
+        }
+
+        switch (UserList.getRole(username)) {
+            case ADMIN: loadUI("admin-view"); return;
+            case LECTURER: loadUI("lecturer-view"); return;
+            default: showError("No Role Found."); return;
+        }
+    }
+
+    private void loadUI(String fileName) throws IOException {
+        mainPane.getChildren().clear();
+        Pane newLoadedPane = FXMLLoader.load(SampleProjectApplication.class.getResource(fileName + ".fxml"));
+        mainPane.getChildren().add(newLoadedPane);
+    }
+
+    private void showError(String error) {
+        lblError.setText(error);
         txtPassword.setText("");
-
         txtUsername.requestFocus();
     }
 }

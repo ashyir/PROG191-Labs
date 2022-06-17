@@ -18,25 +18,17 @@ public class CourseList {
         return 1;
     }
 
-    public static Course search(int id) {
-        for (var course : _courses)
-            if (course.getId() == id)
-                return course;
-
-        return null;
+    public static Course find(int id) {
+        return _courses.stream().filter(c -> c.getId() == id).findFirst().get();
     }
 
-    public static Course search(String code) {
-        for (var course : _courses)
-            if (course.getCode() == code)
-                return course;
-
-        return null;
+    public static Course find(String code) {
+        return _courses.stream().filter(c -> c.getCode().equals(code)).findFirst().get();
     }
 
-    public static int edit(int id, Course newCourse) {
+    public static int edit(Course newCourse) {
         for (var course : _courses) {
-            if (course.getId() == id) {
+            if (course.getId() == newCourse.getId()) {
                 var index = _courses.indexOf(course);
                 _courses.set(index, newCourse);
                 return 1;
@@ -47,20 +39,14 @@ public class CourseList {
     }
 
     public static int remove(int id) {
-        var course = search(id);
+        for (var course : _courses) {
+            if (course.getId() == id) {
+                _courses.remove(course);
+                return 1;
+            }
+        }
 
-        if (course == null)
-            return -1;
-
-        _courses.remove(course);
-
-        return 1;
-    }
-
-    public static int remove(Course course) {
-        _courses.remove(course);
-
-        return 1;
+        return -1;
     }
 
     public static ObservableList<Course> getList() {

@@ -18,25 +18,17 @@ public class ProgramList {
         return 1;
     }
 
-    public static Program search(int id) {
-        for (var program : _programs)
-            if (program.getId() == id)
-                return program;
-
-        return null;
+    public static Program find(int id) {
+        return _programs.stream().filter(p -> p.getId() == id).findFirst().get();
     }
 
-    public static Program search(String name) {
-        for (var program : _programs)
-            if (program.getName() == name)
-                return program;
-
-        return null;
+    public static Program find(String name) {
+        return _programs.stream().filter(p -> p.getName().equals(name)).findFirst().get();
     }
 
-    public static int edit(int id, Program newProgram) {
+    public static int edit(Program newProgram) {
         for (var program : _programs) {
-            if (program.getId() == id) {
+            if (program.getId() == newProgram.getId()) {
                 var index = _programs.indexOf(program);
                 _programs.set(index, newProgram);
 
@@ -48,20 +40,14 @@ public class ProgramList {
     }
 
     public static int remove(int id) {
-        var program = search(id);
+        for (var program : _programs) {
+            if (program.getId() == id) {
+                _programs.remove(program);
+                return 1;
+            }
+        }
 
-        if (program == null)
-            return -1;
-
-        _programs.remove(program);
-
-        return 1;
-    }
-
-    public static int remove(Program program) {
-        _programs.remove(program);
-
-        return 1;
+        return -1;
     }
 
     public static ObservableList<Program> getList() {

@@ -1,18 +1,23 @@
 package com.example.sample_project;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Session {
     private int _id;
     private String _code;
-    private Date _startDate;
-    private Date _endDate;
-    private String _semester;
+    private LocalDate _startDate;
+    private LocalDate _endDate;
+    private Semester _semester;
     private int _year;
     private int _lecturerId;
     private int _courseId;
 
-    public Session(int id, String code, Date startDate, Date endDate, String semester, int year, int lecturerId, int courseId) {
+    public Session(int id, String code, LocalDate startDate, LocalDate endDate, Semester semester, int year, int lecturerId, int courseId) {
+        setInfo(id, code, startDate, endDate, semester, year, lecturerId, courseId);
+    }
+
+    private void setInfo(int id, String code, LocalDate startDate, LocalDate endDate, Semester semester, int year, int lecturerId, int courseId) {
         _id = id;
         _code = code;
         _startDate = startDate;
@@ -23,14 +28,8 @@ public class Session {
         _courseId = courseId;
     }
 
-    public void update(String code, Date startDate, Date endDate, String semester, int year, int lecturerId, int courseId) {
-        _code = code;
-        _startDate = startDate;
-        _endDate = endDate;
-        _semester = semester;
-        _year = year;
-        _lecturerId = lecturerId;
-        _courseId = courseId;
+    public void update(String code, LocalDate startDate, LocalDate endDate, Semester semester, int year, int lecturerId, int courseId) {
+        setInfo(_id, code, startDate, endDate, semester, year, lecturerId, courseId);
     }
 
     public void setId(int id) {
@@ -49,27 +48,27 @@ public class Session {
         return _code;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         _startDate = startDate;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return _startDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         _endDate = endDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return _endDate;
     }
 
-    public void setSemester(String semester) {
+    public void setSemester(Semester semester) {
         _semester = semester;
     }
 
-    public String getSemester() {
+    public Semester getSemester() {
         return _semester;
     }
 
@@ -95,5 +94,9 @@ public class Session {
 
     public int getCourseId() {
         return _courseId;
+    }
+
+    public String toString() {
+        return _code;
     }
 }

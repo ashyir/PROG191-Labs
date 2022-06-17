@@ -18,25 +18,17 @@ public class SessionList {
         return 1;
     }
 
-    public static Session search(int id) {
-        for (var session : _sessions)
-            if (session.getId() == id)
-                return session;
-
-        return null;
+    public static Session find(int id) {
+        return _sessions.stream().filter(s -> s.getId() == id).findFirst().get();
     }
 
-    public static Session search(String code) {
-        for (var session : _sessions)
-            if (session.getCode() == code)
-                return session;
-
-        return null;
+    public static Session find(String code) {
+        return _sessions.stream().filter(s -> s.getCode().equals(code)).findFirst().get();
     }
 
-    public static int edit(int id, Session newSession) {
+    public static int edit(Session newSession) {
         for (var session : _sessions) {
-            if (session.getId() == id) {
+            if (session.getId() == newSession.getId()) {
                 var index = _sessions.indexOf(session);
                 _sessions.set(index, newSession);
 
@@ -48,20 +40,14 @@ public class SessionList {
     }
 
     public static int remove(int id) {
-        var session = search(id);
+        for (var session : _sessions) {
+            if (session.getId() == id) {
+                _sessions.remove(session);
+                return 1;
+            }
+        }
 
-        if (session == null)
-            return -1;
-
-        _sessions.remove(session);
-
-        return 1;
-    }
-
-    public static int remove(Session session) {
-        _sessions.remove(session);
-
-        return 1;
+        return -1;
     }
 
     public static ObservableList<Session> getList() {

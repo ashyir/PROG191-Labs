@@ -23,7 +23,7 @@
                         <fx:include source="admin-course-view.fxml" />
                     </content>
                 </Tab>
-                <Tab text="Lecturer">
+                <Tab text="User">
                     <content>
                         <fx:include source="admin-user-view.fxml" />
                     </content>

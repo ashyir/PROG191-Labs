@@ -109,7 +109,9 @@ public class LecturerPastSessionController implements Initializable {
         col_5.setStyle("-fx-alignment: CENTER;");
         col_5.setCellValueFactory(new PropertyValueFactory<>("Year"));
 
-        var sessions = SessionList.getList().filtered(s -> s.getEndDate().isBefore(LocalDate.now()));
+        var sessions = SessionList.getList().filtered(s ->
+                s.getEndDate().isBefore(LocalDate.now()) &&
+                        s.getLecturerId() == UserList.getCurrentUser().getId());
 
         listTable.setItems(sessions);
         listTable.getColumns().addAll(col_1, col_2, col_3, col_4, col_5);

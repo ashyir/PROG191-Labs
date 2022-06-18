@@ -5,15 +5,15 @@ import javafx.collections.ObservableList;
 
 public class SessionList {
     private static ObservableList<Session> _sessions = FXCollections.observableArrayList();
-    private static int _currentId = 0;
+    private static int _idCount = 0;
 
     public static int add(Session session) {
         if (session == null)
             return -1;
 
-        session.setId(_currentId);
+        session.setId(_idCount);
         _sessions.add(session);
-        ++_currentId;
+        ++_idCount;
 
         return 1;
     }

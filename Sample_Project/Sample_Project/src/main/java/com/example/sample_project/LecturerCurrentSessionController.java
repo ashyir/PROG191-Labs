@@ -116,7 +116,9 @@ public class LecturerCurrentSessionController implements Initializable {
 
         var today = LocalDate.now();
 
-        var sessions = SessionList.getList().filtered(s -> s.getEndDate().isAfter(today) || s.getEndDate().isEqual(today));
+        var sessions = SessionList.getList().filtered(s ->
+                (s.getEndDate().isAfter(today) || s.getEndDate().isEqual(today)) &&
+                        s.getLecturerId() == UserList.getCurrentUser().getId());
 
         listTable.setItems(sessions);
         listTable.getColumns().addAll(col_1, col_2, col_3, col_4, col_5);

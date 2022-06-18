@@ -8,9 +8,12 @@ import java.util.stream.Collectors;
 
 public class UserList {
     private static ObservableList<User> _users;
+    private static User _currentUser;
+    private static int _idCount = 0;
 
     static {
         try {
+            _currentUser = new User();
             _users = FXCollections.observableArrayList(
                     new User(
                             0,
@@ -19,7 +22,7 @@ public class UserList {
                             "Admin",
                             "+84962242999",
                             "baohnp@fe.edu.vn",
-                            "13329",
+                            "12345",
                             Role.ADMIN
                     )
             );
@@ -28,15 +31,13 @@ public class UserList {
         }
     }
 
-    private static int _currentId = 0;
-
     public static int add(User user) {
         if (user == null)
             return -1;
 
-        user.setId(_currentId);
+        user.setId(_idCount);
         _users.add(user);
-        ++_currentId;
+        ++_idCount;
 
         return 1;
     }
@@ -45,8 +46,8 @@ public class UserList {
         return _users.stream().filter(u -> u.getId() == id).findFirst().get();
     }
 
-    public static User find(String number) {
-        return _users.stream().filter(u -> u.getNumber().equals(number)).findFirst().get();
+    public static User find(String username) {
+        return _users.stream().filter(u -> u.getUsername().equals(username)).findFirst().get();
     }
 
     public static boolean authenticate(String username, String password) throws NoSuchAlgorithmException {
@@ -56,6 +57,14 @@ public class UserList {
         }
 
         return false;
+    }
+
+    public static void setCurrentUser(User user) {
+        _currentUser = user;
+    }
+
+    public static User getCurrentUser() {
+        return _currentUser;
     }
 
     public static Role getRole(String username) {

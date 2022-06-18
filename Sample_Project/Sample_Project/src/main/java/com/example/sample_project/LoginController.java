@@ -34,6 +34,8 @@ public class LoginController {
 
     @FXML
     protected void login() throws IOException, NoSuchAlgorithmException {
+        UserList.setCurrentUser(null);
+
         var username = txtUsername.getText();
         var password = txtPassword.getText();
 
@@ -52,14 +54,18 @@ public class LoginController {
             return;
         }
 
-        switch (UserList.getRole(username)) {
-            case ADMIN: loadUI("admin-view"); return;
-            case LECTURER: loadUI("lecturer-view"); return;
-            default: showError("No Role Found."); return;
+        var user = UserList.find(username);
+
+        switch (user.getRole()) {
+            case ADMIN: loadUI("admin-view", user); return;
+            case LECTURER: loadUI("lecturer-view", user); return;
+            default:  showError("No Role Found."); return;
         }
     }
 
-    private void loadUI(String fileName) throws IOException {
+    private void loadUI(String fileName, User user) throws IOException {
+        UserList.setCurrentUser(user);
+
         mainPane.getChildren().clear();
         Pane newLoadedPane = FXMLLoader.load(SampleProjectApplication.class.getResource(fileName + ".fxml"));
         mainPane.getChildren().add(newLoadedPane);

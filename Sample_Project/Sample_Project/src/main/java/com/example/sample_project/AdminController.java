@@ -12,7 +12,8 @@ public class AdminController {
 
     @FXML
     protected void logout() throws IOException {
-        this.
+        UserList.setCurrentUser(null);
+
         mainPane.getChildren().clear();
         Pane newLoadedPane =  FXMLLoader.load(SampleProjectApplication.class.getResource("login-view.fxml"));
         mainPane.getChildren().add(newLoadedPane);

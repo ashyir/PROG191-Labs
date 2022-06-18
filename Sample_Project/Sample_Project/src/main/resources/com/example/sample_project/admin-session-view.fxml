@@ -67,13 +67,13 @@
                         <HBox alignment="CENTER" prefHeight="50.0">
                            <children>
                               <Label prefHeight="25.0" prefWidth="75.0" text="Lecturer" textAlignment="CENTER" textFill="#00704a" />
-                              <ComboBox fx:id="addLecturer" prefWidth="325.0" style="-fx-border-color: #00704A;" />
+                              <ComboBox fx:id="addLecturer" prefWidth="325.0" promptText="Select Lecturer" style="-fx-border-color: #00704A;" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0">
                            <children>
                               <Label prefHeight="25.0" prefWidth="75.0" text="Course" textAlignment="CENTER" textFill="#00704a" />
-                              <ComboBox fx:id="addCourse" prefWidth="325.0" style="-fx-border-color: #00704A;" />
+                              <ComboBox fx:id="addCourse" prefWidth="325.0" promptText="Select Course" style="-fx-border-color: #00704A;" />
                            </children>
                         </HBox>
                                 <HBox alignment="CENTER" prefHeight="50.0" spacing="25.0">

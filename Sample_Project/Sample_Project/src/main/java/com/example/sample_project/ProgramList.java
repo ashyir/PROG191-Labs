@@ -5,15 +5,15 @@ import javafx.collections.ObservableList;
 
 public class ProgramList {
     private static ObservableList<Program> _programs = FXCollections.observableArrayList();
-    private static int _currentId = 0;
+    private static int _idCount = 0;
 
     public static int add(Program program) {
         if (program == null)
             return -1;
 
-        program.setId(_currentId);
+        program.setId(_idCount);
         _programs.add(program);
-        ++_currentId;
+        ++_idCount;
 
         return 1;
     }
